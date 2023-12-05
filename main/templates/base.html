@@ -1,2 +1,71 @@
 <!-- This is the base design for the site; includes header or navbar and footer. All other templates extends this base_template -->
 <!-- The main delcarations, metadata, title, links, links-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<title>Car Inventory</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+        <div class="container">
+            <a href="{{ url_for('site.home') }}" class="navbar-brand">Car Inventory API</a>
+            <button 
+                class="navbar-toggler" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navmenu"
+            ><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="{{ url_for('site.home') }}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('site.profile') }}" class="nav-link">Profile</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="{{ url_for('api.getdata') }}" class="nav-link"></a>
+                    </li> -->
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.signin') }}" class="nav-link">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.signup') }}" class="nav-link">Sign Up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% block content %}
+{% endblock %}
+    <footer class="container-fluid bg-dark h-auto fixed-bottom">
+        <div class="row col-11 m-0 mx-auto mt-3 text-white justify-content-between">
+            <div class="col-4 mt-5 mb-5 " style="height: 27.5vh; width: 27.5vw;">
+                <img class="img-fluid object-fit-cover h-75 w-100" src="">
+            </div>
+            <div class="col-2 mt-5">
+                <p class="" style="font-size: 2.5vw;">Info</p>
+                <a href=""><i><p style="font-size: 1vw;">Chicago,IL 60611 United States</p></i></a>
+                <a href=""><i><p style="font-size: 1.15vw;">info@griottheatre.com</p></i></a>
+                <a href=""><i><p style="font-size: 1.15vw;">Call Us: 708-555-4488</p></i></a>
+            </div>
+        </div>
+    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/js/bootstrap.min.js"></script>
+</body>
+</html>
